@@ -33,6 +33,36 @@ Saleor App is the fastest way of extending Saleor with custom logic using [async
 - 🚀 Communication between Saleor instance and Saleor App
 - 📖 Manifest with webhooks using custom query
 
+### UI stack
+
+This template keeps [Macaw UI](https://github.com/saleor/macaw-ui) for Saleor-native screens and
+Dashboard-facing flows. For new UShop-owned screens, the template also includes:
+
+- [Tailwind CSS v4](https://tailwindcss.com/docs/installation/framework-guides/nextjs)
+- [shadcn/ui](https://ui.shadcn.com/docs/installation/next) with the Radix base
+- [Radix UI](https://www.radix-ui.com/)
+- [lucide-react](https://lucide.dev/icons/) pinned to the Macaw-compatible `0.536.x` range
+- [Motion for React](https://motion.dev/docs/react) for intentional UI animation
+
+Configuration lives in `postcss.config.mjs`, `components.json`, and `src/styles/globals.css`.
+Generated shadcn components live in `src/components/ui`, shared UI helpers live in
+`src/lib/utils.ts`, and React animations should import from `motion/react`.
+
+Use `/ui-stack` as a local smoke-test route for the new UI stack.
+
+shadcn/ui components are committed as local source files. The `shadcn` CLI is not pinned as a
+project dependency because the current published CLI versions are blocked by this repository's pnpm
+trust policy. Keep that policy enabled.
+
+To add another shadcn component:
+
+```
+pnpm dlx shadcn@latest add button
+```
+
+If pnpm blocks the CLI because of the repository trust policy, wait for a trusted release or use a
+reviewed temporary CLI version through `pnpm dlx`. Do not disable the policy.
+
 ### Why Next.js
 
 You can use any preferred technology to create Saleor Apps, but Next.js is among the most efficient for two reasons. The first is the simplicity of maintaining your API endpoints/webhooks and your apps' configuration React front-end in a single, well-organized project. The second reason is the ease and quality of local development and deployment.
@@ -59,7 +89,7 @@ Development container will have port opened:
 Before you start, make sure you have installed:
 
 - [Node.js 22](https://nodejs.org/en/)
-- [pnpm 9](https://pnpm.io/)
+- [pnpm 10](https://pnpm.io/)
 
 1. Install the dependencies by running:
 
